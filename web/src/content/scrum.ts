@@ -181,27 +181,42 @@ export const values = [
   {
     name: "Courage",
     da: "Mod",
+    letter: "C",
+    color: "#f0a35e",
     body: "Sig fra, prøv nyt, tag en rolle. Mod til at vise ufærdigt arbejde i review.",
+    practice: "Tag Scrum Master-rollen i en uge — også selvom det føles nyt.",
   },
   {
     name: "Focus",
     da: "Fokus",
+    letter: "F",
+    color: "#2ec4b6",
     body: "Én task ad gangen. Sprintmålet er helligt — undgå sideprojekter midt i ugen.",
+    practice: "Ingen ny issue, før den nuværende er i Done.",
   },
   {
     name: "Commitment",
     da: "Forpligtelse",
+    letter: "Co",
+    color: "#7aa2ff",
     body: "Når du tager en task, forpligter du dig over for teamet.",
+    practice: "Sig højt i planning: “Den her lukker jeg inden fredag.”",
   },
   {
     name: "Respect",
     da: "Respekt",
+    letter: "R",
+    color: "#c084fc",
     body: "Lyt, giv konstruktiv feedback, hold kamera tændt til møder.",
+    practice: "I PR-review: foreslå forbedring — ikke bare “LGTM” eller “nej”.",
   },
   {
     name: "Openness",
     da: "Åbenhed",
+    letter: "O",
+    color: "#3ecf8e",
     body: "Vær ærlig om blockers, estimater og usikkerhed — over for team, kunde og underviser.",
+    practice: "Sig i daily: “Jeg er usikker — kan vi pair’e 20 min?”",
   },
 ]
 

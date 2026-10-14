@@ -1,8 +1,9 @@
-import { artifacts, ceremonies, roles, values } from "../content/scrum"
+import { artifacts, ceremonies, roles } from "../content/scrum"
 import { BurndownChart } from "./BurndownChart"
 import { DailyExample } from "./DailyExample"
 import { Reveal } from "./Reveal"
 import { ScrumBoard } from "./ScrumBoard"
+import { ScrumValues } from "./ScrumValues"
 
 export function ScrumDeep() {
   return (
@@ -117,22 +118,7 @@ export function ScrumDeep() {
       </div>
 
       <div className="stack">
-        <Reveal>
-          <h3 className="stack__heading">De fem Scrum-værdier</h3>
-        </Reveal>
-        <div className="values">
-          {values.map((item, i) => (
-            <Reveal key={item.name} delay={i * 40}>
-              <div className="values__item">
-                <strong>
-                  {item.name}
-                  <span> · {item.da}</span>
-                </strong>
-                <p>{item.body}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <ScrumValues />
       </div>
     </section>
   )
