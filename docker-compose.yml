@@ -6,10 +6,11 @@ services:
       - dokploy-network
     labels:
       - traefik.enable=true
+      - traefik.docker.network=dokploy-network
       - traefik.http.routers.scrum-web.rule=Host(`${TRAEFIK_HOST:-scrum.mercantec.tech}`)
       - traefik.http.routers.scrum-web.entrypoints=web
+      - traefik.http.routers.scrum-web.service=scrum-web
       - traefik.http.services.scrum-web.loadbalancer.server.port=3000
-      - traefik.docker.network=dokploy-network
 
 networks:
   dokploy-network:
