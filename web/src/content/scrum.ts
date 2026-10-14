@@ -232,39 +232,228 @@ export const roles = [
   },
 ]
 
-export const boardExample = {
-  title: "Eksempel: Scrum-board (uge 3)",
+export type TicketKind = "feature" | "bug" | "chore"
+export type BoardColumnId = "backlog" | "todo" | "doing" | "review" | "done"
+
+export type BoardTicket = {
+  id: string
+  title: string
+  points: number
+  kind: TicketKind
+  assignee?: string
+  note?: string
+}
+
+export type BoardColumn = {
+  id: BoardColumnId
+  name: string
+  hint: string
+  color: string
+  tickets: BoardTicket[]
+}
+
+export const boardExample: {
+  title: string
+  subtitle: string
+  sprintGoal: string
+  team: { name: string; role: string; color: string }[]
+  stats: { label: string; value: string }[]
+  columns: BoardColumn[]
+  learn: { title: string; body: string }[]
+} = {
+  title: "Live-eksempel: Sprint board",
+  subtitle: "Gruppe Nord · Uge 3 · Fredag formiddag",
   sprintGoal: "Brugeren kan oprette, redigere og slette opgaver",
+  team: [
+    { name: "Anna", role: "PO", color: "#2ec4b6" },
+    { name: "Bo", role: "SM", color: "#f0a35e" },
+    { name: "Chris", role: "Dev", color: "#7aa2ff" },
+  ],
+  stats: [
+    { label: "Sprintmål", value: "CRUD opgaver" },
+    { label: "Kapacitet", value: "20 SP" },
+    { label: "Done nu", value: "17 SP" },
+    { label: "Tilbage", value: "3 SP" },
+  ],
   columns: [
     {
+      id: "backlog",
       name: "Backlog",
-      items: ["#21 Notifikationer", "#22 Mørk tilstand"],
+      hint: "Ikke i sprintet",
+      color: "#6b8a88",
+      tickets: [
+        {
+          id: "#21",
+          title: "Notifikationer",
+          points: 5,
+          kind: "feature",
+          note: "Venter til næste sprint",
+        },
+        {
+          id: "#22",
+          title: "Mørk tilstand",
+          points: 3,
+          kind: "feature",
+        },
+      ],
     },
     {
+      id: "todo",
       name: "Todo",
-      items: ["#18 Slet opgave", "#19 Tom-tilstand"],
+      hint: "Klar til at tage",
+      color: "#7aa2ff",
+      tickets: [
+        {
+          id: "#19",
+          title: "Tom-tilstand på listen",
+          points: 2,
+          kind: "chore",
+          assignee: "Chris",
+        },
+      ],
     },
     {
+      id: "doing",
       name: "Doing",
-      items: ["#17 Rediger opgave (Anna)"],
+      hint: "Max 1 pr. person",
+      color: "#f0a35e",
+      tickets: [
+        {
+          id: "#17",
+          title: "Rediger opgave",
+          points: 3,
+          kind: "feature",
+          assignee: "Anna",
+          note: "Næsten færdig",
+        },
+      ],
     },
     {
+      id: "review",
       name: "Review",
-      items: ["#16 Opret opgave (PR #8)"],
+      hint: "PR + feedback",
+      color: "#c084fc",
+      tickets: [
+        {
+          id: "#16",
+          title: "Opret opgave",
+          points: 3,
+          kind: "feature",
+          assignee: "Bo",
+          note: "PR #8 åben",
+        },
+      ],
     },
     {
+      id: "done",
       name: "Done",
-      items: ["#14 Login", "#15 Listevisning"],
+      hint: "Merged + DoD",
+      color: "#3ecf8e",
+      tickets: [
+        {
+          id: "#14",
+          title: "Login",
+          points: 5,
+          kind: "feature",
+          assignee: "Chris",
+        },
+        {
+          id: "#15",
+          title: "Listevisning",
+          points: 5,
+          kind: "feature",
+          assignee: "Anna",
+        },
+        {
+          id: "#13",
+          title: "Fix tom titel-crash",
+          points: 2,
+          kind: "bug",
+          assignee: "Bo",
+        },
+      ],
+    },
+  ],
+  learn: [
+    {
+      title: "Boardet er sandheden",
+      body: "Hvis Anna arbejder på #17, skal kortet stå i Doing — ellers lyver boardet til daily.",
+    },
+    {
+      title: "Én task ad gangen",
+      body: "Doing har kun ét aktivt kort pr. person. Det er Focus i praksis.",
+    },
+    {
+      title: "Review er ikke Done",
+      body: "PR #8 er synlig i Review. Done kræver merge og Definition of Done.",
     },
   ],
 }
 
 export const burndownExample = {
-  title: "Eksempel: Burndown (story points)",
+  title: "Burndown: resterende story points",
+  subtitle: "Samme sprint — sådan læser I kurven",
   days: ["Man", "Tir", "Ons", "Tor", "Fre"],
   ideal: [20, 15, 10, 5, 0],
   actual: [20, 18, 14, 9, 3],
-  note: "Kurven falder, når arbejde lukkes. Hvis actual ligger over ideal, er I bagud — justér scope eller få hjælp.",
+  annotations: [
+    { day: 0, text: "Planning: 20 SP valgt" },
+    { day: 2, text: "Ons: tempo stiger" },
+    { day: 4, text: "Fre: 3 SP tilbage (#17)" },
+  ],
+  readTips: [
+    {
+      title: "Ideal-linjen",
+      body: "Den stiplede linje er “hvis vi brænder jævnt af”. Den er et pejlemærke — ikke en dom.",
+    },
+    {
+      title: "Over ideal = bagud",
+      body: "Tirsdag lå actual over ideal (18 vs 15). Teamet snakkede blockers i daily.",
+    },
+    {
+      title: "Handl i tide",
+      body: "På torsdag kunne de skære #19 ud af sprintet — hellere et færdigt mål end tre halv færdige.",
+    },
+  ],
+  note: "Burndown er et af Scrums klassiske værktøjer (sammen med product- og sprint backlog).",
+}
+
+export const dailyExample = {
+  title: "Mini Daily Scrum (onsdag)",
+  duration: "~12 min",
+  lines: [
+    {
+      who: "Anna",
+      role: "PO/Dev",
+      color: "#2ec4b6",
+      text: "I går: listevisning Done. I dag: rediger-formular. Blocker: ingen.",
+    },
+    {
+      who: "Bo",
+      role: "SM",
+      color: "#f0a35e",
+      text: "I går: startede opret-opgave. I dag: færdiggør + åbn PR. Blocker: usikker på validering.",
+    },
+    {
+      who: "Chris",
+      role: "Dev",
+      color: "#7aa2ff",
+      text: "I går: login merged. I dag: pair med Bo på validering — så blocker væk.",
+    },
+  ],
+  takeaway:
+    "Daily er ikke status til underviseren. Det er et kort synk: fremdrift, plan og blockers — med boardet som sandhed.",
+}
+
+export const dodExample = {
+  title: "Definition of Done (eksempel)",
+  items: [
+    "Kode på branch + PR oprettet",
+    "Mindst ét review fra en anden i teamet",
+    "Merged til main",
+    "Issue lukket og flyttet til Done",
+    "Dækket af sprint-Release (fredag)",
+  ],
 }
 
 export const mercantecPractice = [

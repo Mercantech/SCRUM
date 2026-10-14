@@ -1,5 +1,6 @@
 import { artifacts, ceremonies, roles, values } from "../content/scrum"
 import { BurndownChart } from "./BurndownChart"
+import { DailyExample } from "./DailyExample"
 import { Reveal } from "./Reveal"
 import { ScrumBoard } from "./ScrumBoard"
 
@@ -101,16 +102,18 @@ export function ScrumDeep() {
         </div>
       </div>
 
-      <div id="eksempel" className="stack">
+      <div id="eksempel" className="stack ex-section">
         <Reveal>
-          <h3 className="stack__heading">Visuelle eksempler</h3>
+          <p className="section__eyebrow">Pensum i farver</p>
+          <h3 className="stack__heading">Eksempel: ét sprint, synligt</h3>
           <p className="section__lede section__lede--tight">
-            Sådan kan et sprint se ud på boardet — og hvordan en burndown
-            fortæller, om I er på sporet.
+            Følg gruppe Nord gennem uge 3. Boardet, burndown, daily og Definition
+            of Done hænger sammen — det er sådan Scrum bliver konkret.
           </p>
         </Reveal>
         <ScrumBoard />
         <BurndownChart />
+        <DailyExample />
       </div>
 
       <div className="stack">
