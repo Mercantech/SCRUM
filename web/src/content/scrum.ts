@@ -675,69 +675,138 @@ export const requirements = {
 export const xp = {
   intro:
     "Extreme Programming (XP) er en Agile metode med fokus på teknisk praksis og tæt samarbejde. Scrum organiserer arbejdet; XP skærper hvordan I bygger software.",
+  compare: [
+    {
+      side: "Scrum",
+      color: "#2ec4b6",
+      points: [
+        "Roller, ceremonier, backlog",
+        "Hvad og hvornår vi leverer",
+        "Synligt flow på boardet",
+      ],
+    },
+    {
+      side: "XP",
+      color: "#c084fc",
+      points: [
+        "Tekniske praksisser i koden",
+        "Hvordan vi bygger sikkert",
+        "Pairing, tests, simpel design",
+      ],
+    },
+  ],
   activities: [
     {
       name: "Listening",
       da: "Lytte",
+      color: "#7aa2ff",
       body: "Forstå kundens behov — ofte via user stories og dialog.",
+      example: "Kundechef: “Vi skal kunne oprette et studiemål på under 30 sek.”",
     },
     {
       name: "Designing",
       da: "Designe",
+      color: "#c084fc",
       body: "Hold designet simpelt. Refaktorer når I lærer mere.",
+      example: "Skitse: Goal { id, title, done } — intet mere end nødvendigt.",
     },
     {
       name: "Coding",
       da: "Kode",
+      color: "#f0a35e",
       body: "Skriv den simpleste kode der virker. Pair programming hjælper.",
+      example: "Anna driver, Bo navigator — skift hvert 15. minut.",
     },
     {
       name: "Testing",
       da: "Teste",
+      color: "#3ecf8e",
       body: "Automatiserede tests. TDD er en kernepraksis i XP-familien.",
+      example: "Test først: createGoal(\"Aflevering\") returnerer et mål med titel.",
     },
   ],
   practices: [
     {
       name: "Pair programming",
+      color: "#f0a35e",
       body: "To personer, én maskine: driver skriver, navigator tænker. Skift ofte. Flere øjne = færre fejl og mere læring.",
+      tip: "Sæt et timer — 15 min, så bytter I roller.",
     },
     {
       name: "Continuous integration",
+      color: "#2ec4b6",
       body: "Integrér ofte — små commits, grønne builds.",
+      tip: "Hellere 5 små PR’er end én kæmpe fredags-merge.",
     },
     {
       name: "Simple design",
+      color: "#7aa2ff",
       body: "Ingen over-arkitektur. Byg det I har brug for nu.",
+      tip: "Spørg: “Har vi brug for det i dette sprint?”",
     },
     {
       name: "Refactoring",
+      color: "#c084fc",
       body: "Forbedr struktur uden at ændre adfærd — støttet af tests.",
+      tip: "Kun refaktorér når tests er grønne.",
+    },
+  ],
+  pairRoles: [
+    {
+      role: "Driver",
+      color: "#f0a35e",
+      body: "Har tastaturet. Skriver den næste lille bid kode.",
+    },
+    {
+      role: "Navigator",
+      color: "#7aa2ff",
+      body: "Ser det store billede, spotter fejl, foreslår næste skridt.",
     },
   ],
 }
 
 export const tdd = {
   intro:
-    "Test Driven Development: skriv testen først, få den til at fejle, skriv minimal kode, refaktorer.",
+    "Test Driven Development: skriv testen først, få den til at fejle, skriv minimal kode, refaktorer. Cyklussen hedder Red → Green → Refactor.",
   cycle: [
     {
       step: "Red",
+      da: "Rød",
+      color: "#e07070",
       body: "Skriv en test der fejler — den beskriver ønsket adfærd.",
+      code: 'test("createGoal sætter titel", () => {\n  const g = createGoal("Aflevering");\n  expect(g.title).toBe("Aflevering");\n});',
+      note: "Testen fejler, fordi createGoal endnu ikke findes — det er meningen.",
     },
     {
       step: "Green",
+      da: "Grøn",
+      color: "#3ecf8e",
       body: "Skriv mindst mulig kode, så testen består.",
+      code: 'function createGoal(title) {\n  return { title };\n}',
+      note: "Ikke smukt — bare nok til at blive grøn. Skønhed kommer i næste skridt.",
     },
     {
       step: "Refactor",
+      da: "Ryd op",
+      color: "#2ec4b6",
       body: "Ryd op i koden. Tests skal stadig være grønne.",
+      code: 'function createGoal(title) {\n  if (!title.trim()) throw new Error("Tom");\n  return { id: crypto.randomUUID(), title };\n}',
+      note: "Nu tilføjer I struktur — men kun mens tests forbliver grønne.",
     },
   ],
   why: [
-    "Tvinger jer til at tænke i små, testbare bidder.",
-    "Giver et sikkerhedsnet når I ændrer kode.",
-    "Dokumenterer adfærd bedre end lange kommentarer.",
+    {
+      title: "Små bidder",
+      body: "Tvinger jer til at tænke i testbare skridt — ikke én kæmpe funktion.",
+    },
+    {
+      title: "Sikkerhedsnet",
+      body: "Når I ændrer kode senere, råber de røde tests, før brugeren gør.",
+    },
+    {
+      title: "Levende dokumentation",
+      body: "Tests beskriver adfærd tydeligere end lange kommentarer.",
+    },
   ],
 }
 
@@ -748,6 +817,8 @@ export const scenario = {
   days: [
     {
       day: "Mandag",
+      color: "#2ec4b6",
+      label: "Planning + start",
       items: [
         "PO prioriterer backlog med Kundechef fra Syd.",
         "Sprint Planning: mål = “opret og se mål”.",
@@ -755,7 +826,9 @@ export const scenario = {
       ],
     },
     {
-      day: "Tirsdag–torsdag",
+      day: "Tir–tor",
+      color: "#f0a35e",
+      label: "Byg + pair",
       items: [
         "Daily 10 min ved boardet — blockers synlige.",
         "Pair programming på svære tasks.",
@@ -764,6 +837,8 @@ export const scenario = {
     },
     {
       day: "Fredag",
+      color: "#c084fc",
+      label: "Review + release",
       items: [
         "Sprint Review / demo for Syd (kunden).",
         "Accepttest på de aftalte scenarier.",
