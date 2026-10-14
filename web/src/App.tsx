@@ -10,12 +10,15 @@ import { SiteNav } from "./components/SiteNav"
 import { Stages } from "./components/Stages"
 import { WhatIsScrum } from "./components/WhatIsScrum"
 import { XpTdd } from "./components/XpTdd"
+import { useTheme } from "./hooks/useTheme"
 
 export default function App() {
+  const { theme, toggle } = useTheme()
+
   return (
-    <>
-      <Hero />
-      <SiteNav />
+    <div className="app-shell">
+      <Hero theme={theme} onToggleTheme={toggle} />
+      <SiteNav theme={theme} onToggleTheme={toggle} />
       <main>
         <WhatIsScrum />
         <AgileSection />
@@ -28,6 +31,6 @@ export default function App() {
         <Stages />
       </main>
       <SiteFooter />
-    </>
+    </div>
   )
 }

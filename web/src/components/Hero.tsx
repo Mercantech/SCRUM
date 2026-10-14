@@ -1,6 +1,13 @@
 import { site } from "../content/scrum"
+import type { Theme } from "../hooks/useTheme"
+import { ThemeToggle } from "./ThemeToggle"
 
-export function Hero() {
+type Props = {
+  theme: Theme
+  onToggleTheme: () => void
+}
+
+export function Hero({ theme, onToggleTheme }: Props) {
   return (
     <header className="hero">
       <div className="hero__atmosphere" aria-hidden="true" />
@@ -14,7 +21,10 @@ export function Hero() {
             height={46}
           />
         </a>
-        <span className="hero__org">{site.org}</span>
+        <div className="hero__nav-end">
+          <span className="hero__org">{site.org}</span>
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+        </div>
       </nav>
       <div className="hero__content">
         <p className="hero__brand">{site.brand}</p>

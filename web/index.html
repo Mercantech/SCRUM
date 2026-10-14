@@ -8,7 +8,24 @@
       name="description"
       content="SCRUM på Mercantec MAGS — Issues, Projects, Releases og gradvis introduktion fra H1 til H6."
     />
+    <meta name="color-scheme" content="dark light" />
     <title>SCRUM · Mercantec MAGS</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("scrum-theme")
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark"
+          document.documentElement.setAttribute("data-theme", theme)
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark")
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
