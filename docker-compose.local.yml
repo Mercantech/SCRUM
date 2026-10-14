@@ -2,9 +2,8 @@ services:
   web:
     ports:
       - "${WEB_PORT:-3000}:3000"
-    networks:
-      - default
 
 networks:
-  dokploy-network:
+  default:
+    name: scrum-local
     external: false

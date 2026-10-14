@@ -2,8 +2,6 @@ services:
   web:
     build: ./web
     restart: unless-stopped
-    networks:
-      - dokploy-network
     labels:
       - traefik.enable=true
       - traefik.docker.network=dokploy-network
@@ -13,5 +11,6 @@ services:
       - traefik.http.services.scrum-web.loadbalancer.server.port=3000
 
 networks:
-  dokploy-network:
+  default:
+    name: dokploy-network
     external: true
