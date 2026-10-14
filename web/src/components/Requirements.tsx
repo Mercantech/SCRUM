@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { requirements } from "../content/scrum"
 import { Reveal } from "./Reveal"
+import { UmlDiagrams } from "./UmlDiagrams"
 
 export function Requirements() {
   const [method, setMethod] = useState(0)
@@ -253,30 +254,13 @@ export function Requirements() {
             className="krav-uml-panel"
             style={{ ["--k" as string]: currentUml.color }}
           >
-            <div>
+            <header className="krav-uml-panel__intro">
               <h4>{currentUml.name}</h4>
               <p>{currentUml.body}</p>
-            </div>
-            <div className="krav-uml-sample" aria-hidden="true">
-              <p>{currentUml.sample}</p>
-            </div>
+            </header>
+            <UmlDiagrams type={umlType} />
           </article>
         </Reveal>
-
-        <div className="uml-visual" aria-hidden="true">
-          <div className="uml-actor">Elev</div>
-          <div className="uml-lines">
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="uml-cases">
-            <span>Login</span>
-            <span>Opret opgave</span>
-            <span>Se liste</span>
-          </div>
-          <div className="uml-system">Studie-app</div>
-        </div>
       </div>
     </section>
   )

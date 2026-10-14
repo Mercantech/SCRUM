@@ -799,20 +799,17 @@ export const requirements = {
       {
         name: "Use case-diagram",
         color: "#3ecf8e",
-        body: "Aktører og use cases — overblik over “hvem gør hvad”.",
-        sample: "Elev → Login / Opret opgave / Se liste",
+        body: "Aktører og use cases — overblik over “hvem gør hvad”. Stickfigur uden for systemgrænsen, ovaler indenfor.",
       },
       {
         name: "Aktivitetsdiagram",
         color: "#7aa2ff",
-        body: "Flow og beslutninger i en proces.",
-        sample: "Start → Udfyld → Tom? → Fejl / Gem → Slut",
+        body: "Flow og beslutninger i en proces. Fyldt cirkel = start, ring = slut, diamant = valg.",
       },
       {
         name: "Klassediagram (simpelt)",
         color: "#c084fc",
-        body: "Begreber i domænet: Opgaver, Bruger, Liste.",
-        sample: "User 1—* Task { title, deadline, done }",
+        body: "Begreber i domænet med attributter og associationer — her User 1—* Task.",
       },
     ],
   },
