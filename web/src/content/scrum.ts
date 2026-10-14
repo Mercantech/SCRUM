@@ -570,32 +570,53 @@ export const stagePhases: {
 export const requirements = {
   intro:
     "Før I koder, skal I forstå hvad der skal bygges — og kunne skrive det, så andre kan byde ind eller levere. Det er kernen i IT-kravsspecifikation (6239).",
+  pipeline: [
+    { label: "Behov", color: "#7aa2ff" },
+    { label: "Metoder", color: "#c084fc" },
+    { label: "Kravspec", color: "#f0a35e" },
+    { label: "Accepttest", color: "#3ecf8e" },
+  ],
   methods: [
     {
       name: "Brainstorming",
+      color: "#f0a35e",
       body: "Generér mange idéer uden at dømme først. Vælg og prioriter bagefter. Godt til at finde features og risici.",
-      visual: "Idé → idé → idé → klynge → top 5",
+      visual: ["Idé", "Idé", "Idé", "Klynge", "Top 5"],
+      do: "Sæt 10 minutter på uret. Ingen kritik midt i flowet — sorter bagefter.",
+      example: "Post-its: notifikationer, offline, dark mode, deling, statistik…",
     },
     {
       name: "Interviews",
+      color: "#7aa2ff",
       body: "Spørg brugere/kunde: Hvem er I? Hvad er smertepunktet? Hvordan ser succes ud? Notér citater og behov — ikke løsninger.",
-      visual: "Spørgsmål → svar → behov → krav",
+      visual: ["Spørgsmål", "Svar", "Behov", "Krav"],
+      do: "Spørg “hvorfor?” tre gange før I foreslår en feature.",
+      example: "“Jeg glemmer afleveringer” → behov: påmindelser — ikke “byg en AI”.",
     },
     {
       name: "Prototyping",
+      color: "#c084fc",
       body: "Lav en billig skitse (Figma, papir, klikbar mock) for at teste idéen, før I investerer i kode.",
-      visual: "Skitse → feedback → næste skitse",
+      visual: ["Skitse", "Feedback", "Ny skitse"],
+      do: "Vis prototypen til kunden fredag — før I har skrevet backend.",
+      example: "Figma-flow: Login → Liste → Ny opgave → Bekræftelse.",
     },
     {
       name: "Use Cases",
+      color: "#3ecf8e",
       body: "Beskriv interaktion: Aktør gør X → system svarer Y. Inkludér happy path og fejlscenarier.",
-      visual: "Aktør → System → Resultat",
+      visual: ["Aktør", "System", "Resultat"],
+      do: "Skriv altid mindst ét alternativt forløb (fejl / tom input).",
+      example: "Se det fulde eksempel nedenfor: “Opret opgave”.",
     },
   ],
   useCaseExample: {
     title: "Use Case: Opret opgave",
+    id: "UC-01",
     actor: "Elev",
     goal: "Oprette en ny opgave i listen",
+    pre: "Eleven er logget ind",
+    post: "Opgaven findes i listen og er synlig for eleven",
     main: [
       "Eleven åbner appen og trykker “Ny opgave”.",
       "Systemet viser en formular (titel, deadline).",
@@ -610,24 +631,75 @@ export const requirements = {
   specSteps: [
     {
       title: "Fra produkt-/designkrav til kravspec",
+      color: "#7aa2ff",
       body: "Tag kundens ønsker (og Figma) og omsæt dem til testbare krav: funktionelle (“systemet skal…”) og ikke-funktionelle (performance, sikkerhed, tilgængelighed).",
+      checklist: [
+        "Funktionelle krav (hvad systemet gør)",
+        "Ikke-funktionelle krav (hvordan det opfører sig)",
+        "Acceptkriterier pr. krav",
+      ],
+      example:
+        "FR-01: Systemet skal lade en elev oprette en opgave med titel og deadline.",
     },
     {
       title: "Kravspec til tilbud",
+      color: "#f0a35e",
       body: "En god kravspec gør det muligt at afgive/indhente tilbud: scope, acceptkriterier, deadlines, antagelser og hvad der er uden for scope.",
+      checklist: [
+        "Scope (i / ude)",
+        "Tidsramme og leverancer",
+        "Antagelser og afhængigheder",
+      ],
+      example: "Ude af scope: push-notifikationer (parkeres til næste sprint).",
     },
     {
       title: "Analysér en kravspec",
+      color: "#c084fc",
       body: "Find uklarheder, konflikter, manglende acceptkriterier og urealistisk scope. Stil spørgsmål før I lover leverance.",
+      checklist: [
+        "Er kravene testbare?",
+        "Er der konflikter mellem krav?",
+        "Er estimatet realistisk for 1 uge?",
+      ],
+      example: "“Hurtig app” er uklart → spørg: “Under 2 sek. til listevisning?”",
+    },
+  ],
+  reqTypes: [
+    {
+      name: "Funktionelt",
+      color: "#2ec4b6",
+      body: "Hvad systemet skal gøre.",
+      example: "Eleven kan slette en opgave.",
+    },
+    {
+      name: "Ikke-funktionelt",
+      color: "#f0a35e",
+      body: "Kvalitetskrav til driften.",
+      example: "Listen loader på under 2 sekunder.",
     },
   ],
   acceptTest: {
     title: "Accepttest",
     body: "Accepttest tjekker om systemet opfylder aftalte krav — ofte med kunden. Bestået accepttest = “vi er enige om, at det er leveret”.",
-    example: [
-      "Givet at jeg er logget ind",
-      "Når jeg opretter opgaven “Aflevering”",
-      "Så ser jeg den øverst i listen",
+    steps: [
+      { key: "Given", da: "Givet", text: "at jeg er logget ind", color: "#7aa2ff" },
+      {
+        key: "When",
+        da: "Når",
+        text: "jeg opretter opgaven “Aflevering”",
+        color: "#f0a35e",
+      },
+      {
+        key: "Then",
+        da: "Så",
+        text: "ser jeg den øverst i listen",
+        color: "#3ecf8e",
+      },
+    ],
+    tips: [
+      "Skriv accepttest sammen med kunden — ikke efter demo.",
+      "Én test = ét klart resultat (bestået / ikke bestået).",
+      "Kobl testen til et krav-ID (fx FR-01).",
     ],
   },
   uml: {
@@ -636,15 +708,21 @@ export const requirements = {
     types: [
       {
         name: "Use case-diagram",
+        color: "#3ecf8e",
         body: "Aktører og use cases — overblik over “hvem gør hvad”.",
+        sample: "Elev → Login / Opret opgave / Se liste",
       },
       {
         name: "Aktivitetsdiagram",
+        color: "#7aa2ff",
         body: "Flow og beslutninger i en proces.",
+        sample: "Start → Udfyld → Tom? → Fejl / Gem → Slut",
       },
       {
         name: "Klassediagram (simpelt)",
+        color: "#c084fc",
         body: "Begreber i domænet: Opgaver, Bruger, Liste.",
+        sample: "User 1—* Task { title, deadline, done }",
       },
     ],
   },
