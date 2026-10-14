@@ -21,11 +21,11 @@ export function Hero() {
         <h1 className="hero__title">{site.tagline}</h1>
         <p className="hero__lede">{site.intro}</p>
         <div className="hero__cta">
-          <a className="btn btn--primary" href="#scrum">
-            Centrale dele
+          <a className="btn btn--primary" href="#hvad-er-scrum">
+            Start fra nul
           </a>
-          <a className="btn btn--ghost" href="#forloeb">
-            H1–H6
+          <a className="btn btn--ghost" href="#maalpinde">
+            Målpinde 6239 & 6278
           </a>
         </div>
       </div>

@@ -6,8 +6,16 @@ export function SiteFooter() {
           <strong>SCRUM</strong> · Mercantec MAGS
         </p>
         <p>
-          Informationsside om, hvordan vi kører SCRUM på hovedforløbene —
-          Issues, Projects, Releases og teams på ca. tre personer.
+          Guide til Agile, Scrum, kravspecifikation (6239) og
+          programmeringsmetodik (6278). Officielle kilder:{" "}
+          <a href="https://scrumguides.org/scrum-guide.html" rel="noreferrer">
+            Scrum Guide
+          </a>{" "}
+          ·{" "}
+          <a href="https://agilemanifesto.org/" rel="noreferrer">
+            Agile Manifesto
+          </a>
+          .
         </p>
         <a href="https://www.mercantec.dk/" rel="noreferrer">
           mercantec.dk
