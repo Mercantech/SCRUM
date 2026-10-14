@@ -13,17 +13,6 @@ export function Stages() {
         </p>
       </Reveal>
 
-      <Reveal>
-        <div className="phase-track" aria-hidden="true">
-          <span>H1</span>
-          <span>H2</span>
-          <span>H3</span>
-          <span className="phase-track__jump">H4</span>
-          <span>H5</span>
-          <span>H6</span>
-        </div>
-      </Reveal>
-
       <div className="phase-grid">
         {stagePhases.map((phase, i) => (
           <Reveal key={phase.id} delay={i * 70}>

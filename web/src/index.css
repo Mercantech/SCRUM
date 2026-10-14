@@ -1085,31 +1085,6 @@ ol {
 }
 
 /* Hovedforløb — 3 faser */
-.phase-track {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0.4rem;
-  margin: 0 0 1.5rem;
-}
-
-.phase-track span {
-  text-align: center;
-  padding: 0.55rem 0.35rem;
-  border-radius: var(--radius);
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--ink-muted);
-  background: var(--overlay-soft);
-  border: 1px solid var(--line);
-}
-
-.phase-track__jump {
-  color: var(--on-chip) !important;
-  background: var(--jump) !important;
-  border-color: var(--jump) !important;
-}
-
 .phase-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -3730,13 +3705,8 @@ ol {
 
 @media (max-width: 560px) {
   .ex-board__cols,
-  .val-grid,
-  .phase-track {
+  .val-grid {
     grid-template-columns: 1fr;
-  }
-
-  .phase-track {
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 
