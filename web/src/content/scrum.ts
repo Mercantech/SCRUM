@@ -605,6 +605,17 @@ export const gitWorkflow = {
 
 export type StagePhaseId = "early" | "h4" | "late"
 
+export type StageBlock = {
+  title: string
+  body: string
+  items?: string[]
+}
+
+export type StageLevelDetail = {
+  level: string
+  body: string
+}
+
 export const stagePhases: {
   id: StagePhaseId
   range: string
@@ -612,34 +623,108 @@ export const stagePhases: {
   title: string
   summary: string
   highlight?: boolean
+  goal: string
+  byLevel?: StageLevelDetail[]
+  blocks?: StageBlock[]
   points: string[]
+  tip: string
+  links?: { label: string; href: string }[]
 }[] = [
   {
     id: "early",
     range: "H1–H3",
     levels: ["H1", "H2", "H3"],
     title: "Kernepraksis uden roller",
-    summary: "Samme fundament på alle tre forløb — I øver rytmen ind.",
-    points: [
-      "Issues + GitHub Projects-board",
-      "Ugentlige sprints og daily standup",
-      "Releases allerede fra H1",
-      "Review og retro på fredag",
-      "Ingen formelle roller som krav",
+    summary:
+      "Her lærer I at arbejde agilt i praksis — før I skal forklare metoder og roller til en underviser. Fokus er rytme, synlighed og små leverancer.",
+    goal: "Kunne køre en uge som et mini-sprint: planlægge, bygge, vise og forbedre — uden formelle roller.",
+    byLevel: [
+      {
+        level: "H1",
+        body: "Første møde med Issues, board og ugentlige sprints. I vænner jer til at arbejde synligt: alt arbejde ligger på GitHub, og fredag er der noget at vise (release).",
+      },
+      {
+        level: "H2",
+        body: "Samme kernepraksis, men med mere ansvar for kvalitet: bedre issues, kortere feedback-loops og stærkere vaner omkring PR og review.",
+      },
+      {
+        level: "H3",
+        body: "I konsoliderer rytmen. Boardet skal være troværdigt, daily skal være nyttig, og I skal kunne forklare hvorfor I arbejder som I gør — stadig uden krav om roller.",
+      },
     ],
+    points: [
+      "GitHub Issues + Projects-board er jeres fælles sandhed",
+      "Ugentlige sprints med planning, daily, review og retro",
+      "Releases allerede fra H1 — I øver at levere, ikke kun kode",
+      "Ingen formelle roller (PO/SM/Kundechef) som krav endnu",
+      "Målet er vane: synligt arbejde, små bidder, ærlig status",
+    ],
+    tip: "Hvis boardet ikke matcher virkeligheden, er det boardet der skal opdateres — ikke historien I fortæller underviseren.",
   },
   {
     id: "h4",
     range: "H4",
     levels: ["H4"],
-    title: "Hoppet — roller og metodik",
-    summary: "Her kommer dybden: roller, kravspec og Agile i praksis.",
+    title: "Hoppet — roller, krav og metodik",
+    summary:
+      "H4 er det store skifte. Nu skal I både levere software og kunne forklare metodikken: kravspecifikation (6239) og programmeringsmetodik (6278). I spiller to roller på én gang — kunde og udvikler.",
     highlight: true,
+    goal: "Kunne skrive og læse krav, køre Scrum med roller, og beskrive Agile/XP/TDD med egne eksempler fra projektet.",
+    blocks: [
+      {
+        title: "To hold, to sider",
+        body: "I er kunder på jeres egen idé og udviklere på en anden gruppes idé. Det træner begge sider af leverancen: klare krav og ærlig feedback — og at bygge det kunden rent faktisk bad om.",
+        items: [
+          "Kundechef holder kontakt, forventninger og fredagsmøde",
+          "Udviklergruppen leverer increments mod jeres accepttest",
+          "Rotation: alle skal prøve kundechef-rollen",
+        ],
+      },
+      {
+        title: "Scrum-roller i praksis",
+        body: "Nu er roller et krav — ikke bare labels. Product Owner prioriterer, Scrum Master faciliterer, teamet leverer. Kundechef er Mercantec-rollen der binder kundegruppen sammen.",
+        items: [
+          "PO: backlog, scope, “done nok til demo?”",
+          "SM: ceremonier, blockers, at teamet følger processen",
+          "Dev-team: estimater, PR, board, kvalitet",
+          "Kundechef: krav, Figma/feedback, fredags-kundemøde",
+        ],
+      },
+      {
+        title: "6239 · IT-kravsspecifikation",
+        body: "En uge med fokus på at omsætte behov til noget I kan byde ind på og teste. Det er ikke “ekstra dokumentation” — det er kontrakten mellem kunde og udvikler.",
+        items: [
+          "Metoder: brainstorm, interviews, prototyping, Use Cases",
+          "Skriv kravspec der kan bruges til tilbud / afklaring",
+          "Læs og analysér andres kravspec",
+          "Accepttest: hvordan ved I at det er godt nok?",
+          "UML: use case-, aktivitets- og simple klassediagrammer",
+        ],
+      },
+      {
+        title: "6278 · Programmeringsmetodik",
+        body: "En uge hvor I skal kunne beskrive Agile, Scrum, XP og TDD — med jeres eget projekt som eksempel. Teori uden praksis tæller ikke; praksis uden sprog tæller heller ikke.",
+        items: [
+          "Agile-manifest + principper (hvorfor I arbejder iterativt)",
+          "Scrum: roller, ceremonier, backlog/burndown",
+          "XP: listening, designing, coding, testing + pairing",
+          "TDD: red → green → refactor som vane",
+          "Ét samlet scenarie der binder Scrum og XP sammen",
+        ],
+      },
+    ],
     points: [
-      "PO, SM og Kundechef (rotation)",
-      "I er kunder på egen idé og udviklere på en andens",
-      "Kravspec, Use Cases, accepttest (6239)",
-      "Agile, Scrum, XP og TDD i dybden (6278)",
+      "H4 er tungere end H1–H3 — planlæg tid til både kode og dokumentation",
+      "Hold board og kravspec synkroniseret: issues skal spejle aftalte krav",
+      "Demo for kunden på fredag er jeres “sandhedscheck”",
+      "Brug siden her aktivt: målpinde, UML, XP/TDD og roller linker direkte ind",
+    ],
+    tip: "Spørg altid: “Hvilket krav / hvilken accepttest dækker det her issue?” — hvis I ikke kan svare, er issue’et for vagt.",
+    links: [
+      { label: "Målpinde 6239 & 6278", href: "#maalpinde" },
+      { label: "Kravspec & UML", href: "#krav" },
+      { label: "Roller", href: "#roller" },
+      { label: "XP & TDD", href: "#xp-tdd" },
     ],
   },
   {
@@ -647,13 +732,26 @@ export const stagePhases: {
     range: "H5–H6",
     levels: ["H5", "H6"],
     title: "Kernepraksis — roller frivillige",
-    summary: "Tilbage til den agile rytme. Roller er valgfrie.",
-    points: [
-      "Issues, board, sprints og Releases fortsætter",
-      "Roller er ikke et krav",
-      "Brug H4-erfaringen hvis det hjælper teamet",
-      "Mod svendeprøven: vis struktureret samarbejde",
+    summary:
+      "I vender tilbage til den agile rytme fra H1–H3, men med H4-erfaringen i bagagen. Roller er ikke et krav — god struktur er.",
+    goal: "Vise selvstændigt, struktureret samarbejde mod svendeprøven: synligt arbejde, rene leverancer og professionel kommunikation.",
+    byLevel: [
+      {
+        level: "H5",
+        body: "Genstart kernepraksis uden rollekrav. Brug det I lærte på H4 (krav, accepttest, ceremonier) når det hjælper — drop det der bliver teater.",
+      },
+      {
+        level: "H6",
+        body: "Sidste hovedforløb før svendeprøven. Fokus på at I kan køre et projekt professionelt: backlog, kvalitet, releases og samarbejde under tidspres.",
+      },
     ],
+    points: [
+      "Issues, board, sprints og Releases fortsætter som standard",
+      "Roller (PO/SM/Kundechef) er frivillige — kun hvis teamet har gavn af dem",
+      "Tag H4-værktøjerne med: klare issues, acceptkriterier, ærlig retro",
+      "Mod svendeprøven: dokumentér valg og vis at I kan arbejde agilt uden at blive bedt om det",
+    ],
+    tip: "Frivillige roller betyder ikke “ingen proces”. Det betyder at I selv vælger den letteste struktur der stadig holder jer ærlige.",
   },
 ]
 
