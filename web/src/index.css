@@ -645,6 +645,281 @@ ol {
   color: #5fd4c8;
 }
 
+/* God issue + Git flow */
+.issue-card {
+  margin-top: 0.5rem;
+  padding: 1.35rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse 55% 45% at 0% 0%, rgba(46, 196, 182, 0.12), transparent 55%),
+    #0a2226;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.issue-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.65rem 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.issue-card__num {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.issue-card__head h4 {
+  margin: 0;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+.issue-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.issue-card__tags span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  color: #071a1c;
+  background: var(--tag);
+}
+
+.issue-card__meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+  margin-bottom: 1.15rem;
+}
+
+.issue-card__meta div {
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid var(--line);
+}
+
+.issue-card__meta span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.2rem;
+}
+
+.issue-card__meta strong {
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.issue-card__body h5,
+.issue-card__ac h5 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
+.issue-card__body p {
+  color: var(--ink-muted);
+  font-size: 0.98rem;
+}
+
+.issue-card__ac {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--line);
+}
+
+.issue-card__ac ul {
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.issue-card__ac li {
+  position: relative;
+  padding: 0.65rem 0.75rem 0.65rem 2rem;
+  border-radius: var(--radius);
+  background: rgba(46, 196, 182, 0.08);
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+}
+
+.issue-card__ac li::before {
+  content: "✓";
+  position: absolute;
+  left: 0.7rem;
+  top: 0.65rem;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.issue-tips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.issue-tips p {
+  margin: 0;
+  padding: 0.9rem;
+  border-radius: var(--radius);
+  border-top: 2px solid var(--jump);
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--ink-muted);
+  font-size: 0.92rem;
+}
+
+.git-steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
+}
+
+.git-step {
+  padding: 1rem;
+  border-radius: 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--g) 35%, transparent);
+  border-top: 3px solid var(--g);
+  background: color-mix(in srgb, var(--g) 8%, rgba(4, 16, 18, 0.55));
+  min-height: 100%;
+}
+
+.git-step__n {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--g);
+  margin-bottom: 0.35rem;
+}
+
+.git-step h4 {
+  font-size: 1rem;
+  margin-bottom: 0.4em;
+}
+
+.git-step p {
+  color: var(--ink-muted);
+  font-size: 0.88rem;
+  margin-bottom: 0.75rem;
+}
+
+.git-step pre {
+  margin: 0;
+  padding: 0.65rem 0.7rem;
+  border-radius: 0.4rem;
+  background: #041012;
+  border: 1px solid var(--line);
+  overflow-x: auto;
+}
+
+.git-step code {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: #d7ebe7;
+  white-space: pre-wrap;
+}
+
+.git-extras {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.git-naming,
+.git-pr,
+.git-anti {
+  padding: 1.15rem;
+  border-radius: 0.65rem;
+  border: 1px solid var(--line);
+  background: rgba(4, 16, 18, 0.4);
+}
+
+.git-naming h4,
+.git-pr h4,
+.git-anti h4 {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+}
+
+.git-naming ul,
+.git-pr ul,
+.git-anti ul {
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.git-naming li {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.git-naming code {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.git-naming span {
+  color: var(--ink-muted);
+  font-size: 0.88rem;
+}
+
+.git-pr li,
+.git-anti li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: var(--ink-muted);
+  font-size: 0.92rem;
+}
+
+.git-pr li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.git-anti {
+  border-color: color-mix(in srgb, #e07070 40%, transparent);
+  background: rgba(224, 112, 112, 0.06);
+}
+
+.git-anti h4 {
+  color: #e07070;
+}
+
+.git-anti li::before {
+  content: "×";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  color: #e07070;
+  font-weight: 800;
+}
+
 /* Hovedforløb — 3 faser */
 .phase-track {
   display: grid;
@@ -2988,6 +3263,10 @@ ol {
   .flow-grid--2,
   .flow-grid--3,
   .tools,
+  .issue-card__meta,
+  .issue-tips,
+  .git-steps,
+  .git-extras,
   .roles__grid,
   .krav-pipe,
   .krav-method-panel,

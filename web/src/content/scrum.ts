@@ -13,6 +13,7 @@ export const nav = [
   { href: "#eksempel", label: "Eksempel" },
   { href: "#krav", label: "Kravspec" },
   { href: "#xp-tdd", label: "XP & TDD" },
+  { href: "#github", label: "GitHub & Git" },
   { href: "#maalpinde", label: "Målpinde" },
   { href: "#forloeb", label: "H1–H6" },
 ]
@@ -512,6 +513,95 @@ export const githubTools = [
     body: "Luk issues via PR. Commits dokumenterer ændringen; review er del af Done.",
   },
 ]
+
+export const goodIssue = {
+  title: "Eksempel: En god issue",
+  subtitle: "Tags + beskrivelse + acceptkriterier — klar til at blive trukket ind i sprintet",
+  number: "#17",
+  heading: "Elev kan redigere en eksisterende opgave",
+  tags: [
+    { label: "feature", color: "#2ec4b6" },
+    { label: "sprint-3", color: "#7aa2ff" },
+    { label: "priority:high", color: "#f0a35e" },
+    { label: "frontend", color: "#c084fc" },
+  ],
+  meta: [
+    { label: "Assignee", value: "Anna" },
+    { label: "Estimate", value: "3 SP" },
+    { label: "Project", value: "Todo → Doing" },
+  ],
+  description: [
+    "Som elev vil jeg kunne rette titel og deadline på en opgave, så jeg kan rette tastefejl uden at slette og oprette forfra.",
+    "Baggrund: Kunden (gruppe Syd) har prioriteret redigering lige efter opret/liste i sprintmål for uge 3.",
+  ],
+  acceptance: [
+    "Eleven kan åbne en eksisterende opgave og ændre titel + deadline",
+    "Tom titel viser fejl og gemmer ikke",
+    "Efter gem opdateres listen med det nye indhold uden reload-fejl",
+    "Ændringen er dækket af mindst én automatiseret test eller manuel accepttest noteret i PR",
+  ],
+  tips: [
+    "Én issue = ét klart resultat. Del store features op.",
+    "Acceptkriterier skal være testbare (ja/nej).",
+    "Tags hjælper boardet: type, sprint, prioritet, område.",
+  ],
+}
+
+export const gitWorkflow = {
+  title: "Git best practice: 1 issue → 1 branch → 1 PR",
+  intro:
+    "Hold historikken ren og review nemt: hver issue får sin egen branch og sin egen pull request. Når PR merges, lukkes issuen.",
+  steps: [
+    {
+      title: "Tag issuen",
+      color: "#7aa2ff",
+      body: "Flyt til Doing / assign dig selv. Ingen anden arbejder på samme issue.",
+      cmd: "Issue #17 → Assignee: Anna",
+    },
+    {
+      title: "Opret branch fra main",
+      color: "#2ec4b6",
+      body: "Navngiv branchen efter type + issue-nummer + kort slug.",
+      cmd: "git checkout main && git pull\ngit checkout -b feature/17-edit-task",
+    },
+    {
+      title: "Små commits",
+      color: "#f0a35e",
+      body: "Commit ofte med klare beskeder. Referér gerne issuen.",
+      cmd: "git commit -m \"Add edit form for task (#17)\"",
+    },
+    {
+      title: "Åbn PR",
+      color: "#c084fc",
+      body: "PR mod main. Beskriv hvad/hvorfor, link issuen, og bed om review.",
+      cmd: "Closes #17",
+    },
+    {
+      title: "Review → merge → Done",
+      color: "#3ecf8e",
+      body: "Kollega reviewer. Merge til main. Issue lukkes automatisk og flyttes til Done.",
+      cmd: "PR #8 approved → squash merge",
+    },
+  ],
+  naming: [
+    { pattern: "feature/17-edit-task", meaning: "Ny funktionalitet" },
+    { pattern: "fix/13-empty-title", meaning: "Bugfix" },
+    { pattern: "chore/19-empty-state", meaning: "Oprydning / UI-polering" },
+  ],
+  prChecklist: [
+    "Titel matcher issuen (gerne med #17)",
+    "Beskrivelse: hvad er lavet + hvordan testes det",
+    "Linje `Closes #17` (eller `Fixes #17`) så issuen lukkes ved merge",
+    "Mindst ét review fra en anden i teamet",
+    "Ingen hemmeligheder / .env i commit",
+  ],
+  antiPatterns: [
+    "Én kæmpe branch med 8 issues blandet sammen",
+    "Push direkte til main uden PR",
+    "PR uden link til issue — boardet mister sporbarhed",
+    "“WIP hele ugen” uden commits — ingen synlig fremdrift",
+  ],
+}
 
 export type StagePhaseId = "early" | "h4" | "late"
 
