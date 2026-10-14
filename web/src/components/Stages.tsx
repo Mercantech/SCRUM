@@ -1,11 +1,7 @@
-import { useState } from "react"
-import { stages, type StageId } from "../content/scrum"
+import { stagePhases } from "../content/scrum"
 import { Reveal } from "./Reveal"
 
 export function Stages() {
-  const [active, setActive] = useState<StageId>("h4")
-  const current = stages.find((s) => s.id === active) ?? stages[0]
-
   return (
     <section id="forloeb" className="section section--tint">
       <Reveal>
@@ -18,34 +14,44 @@ export function Stages() {
       </Reveal>
 
       <Reveal>
-        <div className="timeline" role="tablist" aria-label="Hovedforløb">
-          {stages.map((stage) => (
-            <button
-              key={stage.id}
-              type="button"
-              role="tab"
-              aria-selected={active === stage.id}
-              className={`timeline__step${stage.highlight ? " timeline__step--jump" : ""}${active === stage.id ? " timeline__step--active" : ""}`}
-              onClick={() => setActive(stage.id)}
-            >
-              <span className="timeline__label">{stage.label}</span>
-              {stage.highlight ? <span className="timeline__badge">Hop</span> : null}
-            </button>
-          ))}
+        <div className="phase-track" aria-hidden="true">
+          <span>H1</span>
+          <span>H2</span>
+          <span>H3</span>
+          <span className="phase-track__jump">H4</span>
+          <span>H5</span>
+          <span>H6</span>
         </div>
       </Reveal>
 
-      <Reveal key={current.id} className="stage-panel">
-        <h3>
-          {current.label}
-          <span> — {current.title}</span>
-        </h3>
-        <ul>
-          {current.points.map((point) => (
-            <li key={point}>{point}</li>
-          ))}
-        </ul>
-      </Reveal>
+      <div className="phase-grid">
+        {stagePhases.map((phase, i) => (
+          <Reveal key={phase.id} delay={i * 70}>
+            <article
+              className={`phase-card${phase.highlight ? " phase-card--jump" : ""}`}
+            >
+              <header className="phase-card__head">
+                <div className="phase-card__levels">
+                  {phase.levels.map((level) => (
+                    <span key={level}>{level}</span>
+                  ))}
+                </div>
+                {phase.highlight ? (
+                  <span className="phase-card__badge">Hop</span>
+                ) : null}
+              </header>
+              <p className="phase-card__range">{phase.range}</p>
+              <h3>{phase.title}</h3>
+              <p className="phase-card__summary">{phase.summary}</p>
+              <ul>
+                {phase.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </article>
+          </Reveal>
+        ))}
+      </div>
     </section>
   )
 }

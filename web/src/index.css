@@ -645,108 +645,149 @@ ol {
   color: #5fd4c8;
 }
 
-/* Timeline / stages */
-.timeline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0 0 1.75rem;
+/* Hovedforløb — 3 faser */
+.phase-track {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.4rem;
+  margin: 0 0 1.5rem;
 }
 
-.timeline__step {
-  position: relative;
-  flex: 1 1 4.5rem;
-  min-width: 4.2rem;
-  padding: 0.85rem 0.5rem;
+.phase-track span {
+  text-align: center;
+  padding: 0.55rem 0.35rem;
+  border-radius: var(--radius);
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--ink-muted);
-  background: transparent;
+  background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease,
-    transform 0.2s ease;
 }
 
-.timeline__step:hover {
-  color: var(--ink);
-  border-color: rgba(46, 196, 182, 0.4);
+.phase-track__jump {
+  color: #1a1208 !important;
+  background: var(--jump) !important;
+  border-color: var(--jump) !important;
 }
 
-.timeline__step--active {
-  color: var(--bg);
-  background: var(--accent);
-  border-color: var(--accent);
+.phase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }
 
-.timeline__step--jump:not(.timeline__step--active) {
-  border-color: rgba(240, 163, 94, 0.55);
+.phase-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%, rgba(46, 196, 182, 0.1), transparent 55%),
+    rgba(4, 16, 18, 0.4);
+  height: 100%;
+}
+
+.phase-card--jump {
+  border-color: color-mix(in srgb, var(--jump) 55%, transparent);
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%, rgba(240, 163, 94, 0.18), transparent 55%),
+    rgba(4, 16, 18, 0.45);
+  box-shadow: 0 14px 32px rgba(240, 163, 94, 0.08);
+}
+
+.phase-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.phase-card__levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.phase-card__levels span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.phase-card--jump .phase-card__levels span {
+  background: rgba(240, 163, 94, 0.2);
   color: var(--jump);
 }
 
-.timeline__step--jump.timeline__step--active {
-  background: var(--jump);
-  border-color: var(--jump);
-  color: #1a1208;
-}
-
-.timeline__label {
-  display: block;
-}
-
-.timeline__badge {
-  display: block;
-  margin-top: 0.2rem;
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  font-weight: 700;
+.phase-card__badge {
+  font-size: 0.68rem;
+  font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.85;
+  color: #1a1208;
+  background: var(--jump);
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
 }
 
-.stage-panel {
-  padding: 1.5rem 0 0.5rem;
-  border-top: 1px solid var(--line);
-  margin-bottom: 2.5rem;
+.phase-card__range {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0.15rem 0 0 !important;
+  color: var(--ink);
 }
 
-.stage-panel h3 {
-  font-size: 1.5rem;
+.phase-card--jump .phase-card__range {
+  color: var(--jump);
 }
 
-.stage-panel h3 span {
-  font-weight: 500;
+.phase-card h3 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.phase-card__summary {
   color: var(--ink-muted);
+  font-size: 0.92rem;
+  margin: 0 !important;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
 }
 
-.stage-panel ul {
+.phase-card ul {
   list-style: none;
   display: grid;
-  gap: 0.65rem;
-  margin-top: 1rem;
+  gap: 0.55rem;
+  margin-top: 0.25rem;
 }
 
-.stage-panel li {
+.phase-card li {
   position: relative;
-  padding-left: 1.25rem;
+  padding-left: 1.1rem;
   color: var(--ink-muted);
+  font-size: 0.92rem;
 }
 
-.stage-panel li::before {
+.phase-card li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.55em;
-  width: 0.45rem;
-  height: 0.45rem;
+  top: 0.5em;
+  width: 0.4rem;
+  height: 0.4rem;
   border-radius: 50%;
   background: var(--accent);
+}
+
+.phase-card--jump li::before {
+  background: var(--jump);
 }
 
 /* Roles */
@@ -2509,6 +2550,7 @@ ol {
   .tdd-stage,
   .tdd-why,
   .xp-scenario,
+  .phase-grid,
   .maal-grid,
   .ex-board__stats,
   .ex-learn,
@@ -2567,8 +2609,13 @@ ol {
 
 @media (max-width: 560px) {
   .ex-board__cols,
-  .val-grid {
+  .val-grid,
+  .phase-track {
     grid-template-columns: 1fr;
+  }
+
+  .phase-track {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

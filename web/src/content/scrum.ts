@@ -513,52 +513,37 @@ export const githubTools = [
   },
 ]
 
-export type StageId = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+export type StagePhaseId = "early" | "h4" | "late"
 
-export const stages: {
-  id: StageId
-  label: string
+export const stagePhases: {
+  id: StagePhaseId
+  range: string
+  levels: string[]
   title: string
+  summary: string
   highlight?: boolean
   points: string[]
 }[] = [
   {
-    id: "h1",
-    label: "H1",
-    title: "Kom godt i gang",
+    id: "early",
+    range: "H1–H3",
+    levels: ["H1", "H2", "H3"],
+    title: "Kernepraksis uden roller",
+    summary: "Samme fundament på alle tre forløb — I øver rytmen ind.",
     points: [
-      "Issues og GitHub Projects-board",
-      "Sprints og standup (daily)",
+      "Issues + GitHub Projects-board",
+      "Ugentlige sprints og daily standup",
       "Releases allerede fra H1",
+      "Review og retro på fredag",
       "Ingen formelle roller som krav",
     ],
   },
   {
-    id: "h2",
-    label: "H2",
-    title: "Samme kerne, mere rutine",
-    points: [
-      "Issues + board fortsætter",
-      "Sprints og standup styrkes",
-      "Ugentlige Releases",
-      "Boardet spejler arbejdet",
-    ],
-  },
-  {
-    id: "h3",
-    label: "H3",
-    title: "Struktur uden roller",
-    points: [
-      "Issues, board, sprints og Releases",
-      "Daily med fokus på blockers",
-      "Review og retro på fredag",
-      "Stadig uden formelle roller som krav",
-    ],
-  },
-  {
     id: "h4",
-    label: "H4",
-    title: "Roller + kravspec",
+    range: "H4",
+    levels: ["H4"],
+    title: "Hoppet — roller og metodik",
+    summary: "Her kommer dybden: roller, kravspec og Agile i praksis.",
     highlight: true,
     points: [
       "PO, SM og Kundechef (rotation)",
@@ -568,23 +553,16 @@ export const stages: {
     ],
   },
   {
-    id: "h5",
-    label: "H5",
+    id: "late",
+    range: "H5–H6",
+    levels: ["H5", "H6"],
     title: "Kernepraksis — roller frivillige",
+    summary: "Tilbage til den agile rytme. Roller er valgfrie.",
     points: [
-      "Issues, board, sprints og Releases",
+      "Issues, board, sprints og Releases fortsætter",
       "Roller er ikke et krav",
-      "Brug H4-erfaringen hvis det hjælper",
-    ],
-  },
-  {
-    id: "h6",
-    label: "H6",
-    title: "Mod svendeprøven",
-    points: [
-      "Fortsæt den agile kernepraksis",
-      "Releases og ærligt board",
-      "Roller er ikke et krav",
+      "Brug H4-erfaringen hvis det hjælper teamet",
+      "Mod svendeprøven: vis struktureret samarbejde",
     ],
   },
 ]
