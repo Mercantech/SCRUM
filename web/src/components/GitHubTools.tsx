@@ -1,4 +1,5 @@
 import { gitWorkflow, githubTools, goodIssue } from "../content/scrum"
+import { MagsBoardGuide } from "./MagsBoardGuide"
 import { Reveal } from "./Reveal"
 
 export function GitHubTools() {
@@ -9,8 +10,8 @@ export function GitHubTools() {
         <h2 className="section__title">GitHub i praksis</h2>
         <p className="section__lede">
           Issues, Projects, Releases og pull requests er vores SCRUM-værktøjskasse
-          — fra første hovedforløb. Nedenfor ser du en god issue og Git-flowet
-          issue → branch → PR.
+          — fra første hovedforløb. Start med MAGS-board templaten, skriv gode
+          issues, og følg Git-flowet issue → branch → PR.
         </p>
       </Reveal>
 
@@ -34,6 +35,8 @@ export function GitHubTools() {
           </Reveal>
         ))}
       </div>
+
+      <MagsBoardGuide />
 
       <div id="god-issue" className="stack">
         <Reveal>

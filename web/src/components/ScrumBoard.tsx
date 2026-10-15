@@ -65,7 +65,9 @@ export function ScrumBoard() {
                     </div>
                     <p className="ex-ticket__title">{t.title}</p>
                     <div className="ex-ticket__meta">
-                      <span className="ex-ticket__pts">{t.points} SP</span>
+                      <span className="ex-ticket__pts">
+                        {t.points > 0 ? `${t.points} SP` : "Ceremoni"}
+                      </span>
                       {t.assignee ? (
                         <span className="ex-ticket__who">{t.assignee}</span>
                       ) : null}

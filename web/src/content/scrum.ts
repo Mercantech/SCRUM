@@ -14,6 +14,7 @@ export const nav = [
   { href: "#krav", label: "Kravspec" },
   { href: "#xp-tdd", label: "XP & TDD" },
   { href: "#github", label: "GitHub & Git" },
+  { href: "#mags-board", label: "Board-template" },
   { href: "#maalpinde", label: "Målpinde" },
   { href: "#forloeb", label: "H1–H6" },
 ]
@@ -278,7 +279,7 @@ export const boardExample: {
   learn: { title: string; body: string }[]
 } = {
   title: "Live-eksempel: Sprint board",
-  subtitle: "Gruppe Nord · Uge 3 · Fredag formiddag",
+  subtitle: "Gruppe Nord · Uge 3 · Onsdag · matched til MAGS-templaten",
   sprintGoal: "Brugeren kan oprette, redigere og slette opgaver",
   team: [
     { name: "Anna", role: "PO", color: "#2ec4b6" },
@@ -288,26 +289,26 @@ export const boardExample: {
   stats: [
     { label: "Sprintmål", value: "CRUD opgaver" },
     { label: "Kapacitet", value: "20 SP" },
-    { label: "Done nu", value: "17 SP" },
-    { label: "Tilbage", value: "3 SP" },
+    { label: "Done nu", value: "12 SP" },
+    { label: "Tilbage", value: "8 SP" },
   ],
   columns: [
     {
       id: "backlog",
       name: "Backlog",
-      hint: "Ikke i sprintet",
+      hint: "Ikke i dette sprint",
       color: "#6b8a88",
       tickets: [
         {
-          id: "#21",
-          title: "Notifikationer",
-          points: 5,
-          kind: "feature",
-          note: "Venter til næste sprint",
+          id: "#11",
+          title: "Tom-tilstand på listen",
+          points: 2,
+          kind: "chore",
+          note: "Venter i Backlog-view",
         },
         {
-          id: "#22",
-          title: "Mørk tilstand",
+          id: "#10",
+          title: "Slet opgave",
           points: 3,
           kind: "feature",
         },
@@ -316,27 +317,49 @@ export const boardExample: {
     {
       id: "todo",
       name: "Todo",
-      hint: "Klar til at tage",
+      hint: "Forpligtet i sprintet",
       color: "#7aa2ff",
       tickets: [
         {
-          id: "#19",
-          title: "Tom-tilstand på listen",
-          points: 2,
+          id: "#4",
+          title: "Torsdag · Daily",
+          points: 0,
           kind: "chore",
+          note: "Ceremoni",
+        },
+        {
+          id: "#5",
+          title: "Fredag · Review + Retro",
+          points: 0,
+          kind: "chore",
+          note: "Ceremoni",
+        },
+        {
+          id: "#9",
+          title: "Rediger opgave",
+          points: 3,
+          kind: "feature",
           assignee: "Chris",
         },
       ],
     },
     {
       id: "doing",
-      name: "Doing",
+      name: "In Progress",
       hint: "Max 1 pr. person",
       color: "#f0a35e",
       tickets: [
         {
-          id: "#17",
-          title: "Rediger opgave",
+          id: "#3",
+          title: "Onsdag · Daily",
+          points: 0,
+          kind: "chore",
+          assignee: "Bo",
+          note: "Ceremoni kører nu",
+        },
+        {
+          id: "#8",
+          title: "Opret opgave",
           points: 3,
           kind: "feature",
           assignee: "Anna",
@@ -347,16 +370,16 @@ export const boardExample: {
     {
       id: "review",
       name: "Review",
-      hint: "PR + feedback",
+      hint: "PR åben (valgfri kolonne)",
       color: "#c084fc",
       tickets: [
         {
-          id: "#16",
-          title: "Opret opgave",
-          points: 3,
-          kind: "feature",
+          id: "#12",
+          title: "Fix crash ved tom titel",
+          points: 2,
+          kind: "bug",
           assignee: "Bo",
-          note: "PR #8 åben",
+          note: "PR #4",
         },
       ],
     },
@@ -367,7 +390,21 @@ export const boardExample: {
       color: "#3ecf8e",
       tickets: [
         {
-          id: "#14",
+          id: "#6",
+          title: "Mandag · Sprint Planning",
+          points: 0,
+          kind: "chore",
+          note: "Ceremoni ✓",
+        },
+        {
+          id: "#2",
+          title: "Tirsdag · Daily",
+          points: 0,
+          kind: "chore",
+          note: "Ceremoni ✓",
+        },
+        {
+          id: "#7",
           title: "Login",
           points: 5,
           kind: "feature",
@@ -380,28 +417,142 @@ export const boardExample: {
           kind: "feature",
           assignee: "Anna",
         },
-        {
-          id: "#13",
-          title: "Fix tom titel-crash",
-          points: 2,
-          kind: "bug",
-          assignee: "Bo",
-        },
       ],
     },
   ],
   learn: [
     {
+      title: "Ceremonier er kort",
+      body: "Planning, daily og review ligger på boardet — så ugens rytme ikke glemmes.",
+    },
+    {
       title: "Boardet er sandheden",
-      body: "Hvis Anna arbejder på #17, skal kortet stå i Doing — ellers lyver boardet til daily.",
+      body: "Arbejder Anna på #8, skal kortet stå i In Progress — ellers lyver daily.",
     },
     {
       title: "Én task ad gangen",
-      body: "Doing har kun ét aktivt kort pr. person. Det er Focus i praksis.",
+      body: "Max ét produkt-issue i In Progress pr. person. Focus i praksis.",
+    },
+  ],
+}
+
+export const magsBoard = {
+  title: "MAGS SCRUM-board template",
+  intro:
+    "Kopiér den struktur eleverne allerede kender fra MAGS-Template: views der skiller backlog fra sprint, status der matcher virkeligheden, og ceremoni-issues så ugens rytme er synlig.",
+  href: "https://github.com/orgs/MAGS-Template/projects/6/views/1",
+  repoHref: "https://github.com/MAGS-Template/SCRUM",
+  views: [
+    {
+      name: "Backlog",
+      color: "#7aa2ff",
+      body: "Alt der ikke er In Progress eller Done. Her ligger kommende features og kommende ceremonier — uden at støje i sprintet.",
+      filter: "-status:\"In Progress\",Done",
     },
     {
-      title: "Review er ikke Done",
-      body: "PR #8 er synlig i Review. Done kræver merge og Definition of Done.",
+      name: "Sprint",
+      color: "#f0a35e",
+      body: "Kanban for den aktuelle uge. Gruppér på Status. Opret Sprint 2, Sprint 3 … efter behov.",
+      filter: "Kun ugens Todo / In Progress / Done",
+    },
+  ],
+  statuses: [
+    {
+      name: "Todo",
+      color: "#7aa2ff",
+      rule: "Kun det I har forpligtet jer til i planning",
+    },
+    {
+      name: "In Progress",
+      color: "#f0a35e",
+      rule: "Max 1 aktivt produkt-issue pr. person",
+    },
+    {
+      name: "Done",
+      color: "#3ecf8e",
+      rule: "Merged + Definition of Done — så luk issue",
+    },
+  ],
+  optionalReview: {
+    name: "Review (valgfri)",
+    body: "Tilføj en Status mellem In Progress og Done, når I vil synliggøre åbne PR’er. Templaten virker også uden.",
+  },
+  ceremonies: [
+    {
+      day: "Man",
+      title: "Sprint Planning",
+      color: "#2ec4b6",
+      time: "20–30 min",
+      agenda: [
+        "Skriv sprintmål i én sætning",
+        "Træk issues Backlog → Todo",
+        "Fordel assignee — hold scope realistisk",
+      ],
+      output: "Sprintmål + Todo-liste aftalt",
+    },
+    {
+      day: "Tir–tor",
+      title: "Daily Scrum",
+      color: "#f0a35e",
+      time: "10–15 min",
+      agenda: [
+        "I går / i dag / blocker",
+        "Boardet er åbent hele tiden",
+        "Flyt kort der ikke matcher virkeligheden",
+      ],
+      output: "Blockers synlige + plan for dagen",
+    },
+    {
+      day: "Fre",
+      title: "Review · Retro · Release",
+      color: "#c084fc",
+      time: "30–45 min",
+      agenda: [
+        "Demo det der er Done ift. sprintmål",
+        "Én retro-handling til næste uge",
+        "GitHub Release med korte notes",
+      ],
+      output: "Feedback + release-link + næste skridt",
+    },
+  ],
+  rules: [
+    {
+      title: "Ceremonier er arbejde",
+      body: "Flyt ceremoni-issue til In Progress under mødet, og Done når output er skrevet i en kommentar.",
+    },
+    {
+      title: "Små issues",
+      body: "Kan I ikke lukke den inden fredag, så split den — ellers lyver burndown og board.",
+    },
+    {
+      title: "Labels med mening",
+      body: "Brug type:feature / type:bug / type:chore / ceremony. Prioritet kun når det hjælper planning.",
+    },
+    {
+      title: "DoD før Done",
+      body: "PR + review + merge + lukket issue. Done er ikke “jeg er færdig på min maskine”.",
+    },
+  ],
+  setup: [
+    {
+      step: "1",
+      title: "Fork eller kopiér repo",
+      body: "Start fra MAGS-Template/SCRUM — README og issue-templates følger med.",
+    },
+    {
+      step: "2",
+      title: "Opret Project (Board)",
+      body: "Status-felt: Todo, In Progress, Done. Tilføj Review hvis I vil synliggøre PR’er.",
+    },
+    {
+      step: "3",
+      title: "Lav to views",
+      body: "Backlog (skjul In Progress/Done) + Sprint (Kanban på Status).",
+    },
+    {
+      step: "4",
+      title: "Seed ugen",
+      body: "Ceremoni-issues + 3–8 produkt-issues i Todo. Skriv sprintmål i planning-issue.",
     },
   ],
 }
@@ -500,8 +651,8 @@ export const githubTools = [
     name: "Projects",
     body: "Scrum-board med kolonner der følger jeres flow.",
     link: {
-      label: "Eksempel: MAGS SCRUM-board",
-      href: "https://github.com/orgs/MAGS-Template/projects/6",
+      label: "Live: MAGS SCRUM-board",
+      href: "https://github.com/orgs/MAGS-Template/projects/6/views/1",
     },
   },
   {
